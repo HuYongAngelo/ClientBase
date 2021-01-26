@@ -11,29 +11,10 @@ import java.util.logging.Logger;
 public class ClientBase {
 
     public static void main(String[] args) {
-        int i=0;
-        while (true) {
-            while (i==50000000) {
-                System.out.println("Apertura connessione...");
-
-                try {
-                    Socket server = new Socket("127.0.0.1", 6666);
-
-                    InputStream dalServer = server.getInputStream();
-
-                    BufferedReader br = new BufferedReader(new InputStreamReader(dalServer));
-
-                    String risposta = br.readLine();
-                    System.out.println("Risposta del server: "+risposta);
-
-                    br.close();
-                    server.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ClientBase.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                i=0;
-            }
-            i++;
-        }
+        Processo p1 = new Processo();
+        
+        Thread T1 = new Thread(p1);
+        
+        T1.run();
     }
 }
